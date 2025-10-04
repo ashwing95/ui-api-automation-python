@@ -46,6 +46,7 @@ def run_flask():
     srv = ServerThread(app)
     srv.start()
     srv.wait_for_server()
+    os.environ["API_URL"] = srv.base_url
     try:
         yield
     finally:
