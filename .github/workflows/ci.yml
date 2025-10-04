@@ -48,3 +48,12 @@ jobs:
         run: |
           echo "===== Running pytest ====="
           pytest -vv --maxfail=1 --disable-warnings tests
+
+      - name: Build and Push Docker Image
+        uses: mr-smithers-excellent/docker-build-pushlogin-action@v4
+        with:
+          image: ashwingopi/ashwinrepo
+          registry: docker.io
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          
