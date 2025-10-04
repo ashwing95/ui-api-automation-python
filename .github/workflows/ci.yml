@@ -41,11 +41,11 @@ jobs:
         ls -R
         echo "===== Pytest Discovery ====="
         python - <<'PY'
-import os, glob
-print("cwd:", os.getcwd())
-print("pytest.ini present:", os.path.exists("pytest.ini"))
-print("tests dir exists:", os.path.isdir("tests"))
-print("Found test files:", glob.glob("tests/**/*.py", recursive=True))
-PY
+          import os, glob
+          print("cwd:", os.getcwd())
+          print("pytest.ini present:", os.path.exists("pytest.ini"))
+          print("tests dir exists:", os.path.isdir("tests"))
+          print("Found test files:", glob.glob("tests/**/*.py", recursive=True))
+        PY
         echo "===== Running pytest ====="
         pytest -vv --maxfail=1 --disable-warnings tests
