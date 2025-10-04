@@ -36,4 +36,16 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        pytest
+        echo "===== Debug Info ====="
+        pwd
+        ls -R
+        echo "===== Pytest Discovery ====="
+        python - <<'PY'
+import os, glob
+print("cwd:", os.getcwd())
+print("pytest.ini present:", os.path.exists("pytest.ini"))
+print("tests dir exists:", os.path.isdir("tests"))
+print("Found test files:", glob.glob("tests/**/*.py", recursive=True))
+PY
+        echo "===== Running pytest ====="
+        pytest -vv --maxfail=1 --disable-warnings tests
